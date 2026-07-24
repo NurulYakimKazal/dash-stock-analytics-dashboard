@@ -33,7 +33,7 @@ def render_sidebar():
 
                 dmc.Title(
                     "Ticker and Date Range Filter",
-                    order=4,
+                    order=5,
                 ),
 
                 # Stock selector
@@ -61,7 +61,7 @@ def render_sidebar():
 
             ],
 
-            gap="md",
+            gap="sm",
         ),
 
 

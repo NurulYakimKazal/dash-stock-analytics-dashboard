@@ -42,6 +42,7 @@ app.layout = dmc.MantineProvider(
                 page_container
             ),
         ],
+        id="app-shell",
         # ============================
         # APP SHELL SETTINGS
         # ============================
@@ -50,13 +51,32 @@ app.layout = dmc.MantineProvider(
         },
 
         navbar={
-            "width": 320,
+            "width": 275,
             "breakpoint": "sm",
+            "collapsed": {
+                "mobile": True,
+                "desktop": False,
+            },
         },
 
         padding="md",
     )
 )
+
+
+@callback(
+    Output("app-shell", "navbar"),
+    Input("navbar-burger", "opened"),
+)
+def toggle_sidebar(opened):
+
+    return {
+        "width": 275,
+        "breakpoint": "sm",
+        "collapsed": {
+            "mobile": not opened,
+        },
+    }
 
 
 @callback(
