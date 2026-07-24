@@ -36,7 +36,7 @@ engine = create_engine(
 # -----------------------------
 # SCHEMA INIT
 # -----------------------------
-def create_stock_tables():
+def create_stock_table():
     with engine.begin() as conn:
         conn.execute(text("""
         CREATE TABLE IF NOT EXISTS stock_prices (
