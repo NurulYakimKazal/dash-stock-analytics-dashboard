@@ -16,7 +16,7 @@ def init_db_and_sync(create_tables, run_etl):
 
         fetch_stock_data.cache_clear()
 
-        print("Stock data synced")
+        print("Stock data sync completed.")
 
     except Exception as e:
         print(f"ETL failed: {e}")
