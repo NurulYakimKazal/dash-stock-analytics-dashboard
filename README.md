@@ -362,7 +362,7 @@ Open a terminal and run:
 python scheduler.py
 ```
 
-## 4. Start the Dash Application
+## 5. Start the Dash Application
 
 ```bash
 python app.py
