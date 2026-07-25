@@ -5,9 +5,6 @@ import dash_mantine_components as dmc
 from components.header import render_header
 from components.sidebar import render_sidebar
 from src.db.stock_database import fetch_stock_data
-from modules.init_pipeline import init_db_and_sync
-from src.etl.stock_incremental_etl import run_stock_etl
-from src.db.stock_database import create_stock_table
 
 
 app = dash.Dash(

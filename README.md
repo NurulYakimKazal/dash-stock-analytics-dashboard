@@ -165,6 +165,7 @@ Dash Application Layer
 * ReportLab
 * Kaleido
 * python-dotenv
+* APScheduler
 
 ---
 
@@ -174,7 +175,7 @@ Dash Application Layer
 * Cleans and validates financial records
 * Stores structured OHLCV data
 * Prevents duplicate records using database constraints
-* Uses incremental synchronization logic
+* Uses scheduled incremental synchronization via a cron-based ETL job 
 * Maintains database consistency through primary keys
 
 ---
@@ -243,6 +244,7 @@ DashStockDashboard/
 │   └── etl/
 ├── utils/   
 ├── app.py                     # main Dash application
+├── scheduler.py               # scheduled ETL jobs
 ├── requirements.txt
 ├── .env.example
 └── README.md
