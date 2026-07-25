@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import timedelta, datetime
 
 from src.db.stock_database import (
-    create_stock_tables,
+    create_stock_table,
     insert_stock_prices,
     get_all_latest_stock_dates
 )
@@ -13,7 +13,7 @@ from utils.config import TICKERS, DEFAULT_START
 
 def run_stock_etl():
 
-    create_stock_tables()
+    create_stock_table()
     logger = logging.getLogger(__name__)
 
     latest_dates = get_all_latest_stock_dates()

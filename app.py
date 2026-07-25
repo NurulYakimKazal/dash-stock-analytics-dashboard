@@ -7,13 +7,7 @@ from components.sidebar import render_sidebar
 from src.db.stock_database import fetch_stock_data
 from modules.init_pipeline import init_db_and_sync
 from src.etl.stock_incremental_etl import run_stock_etl
-from src.db.stock_database import create_stock_tables
-
-
-init_db_and_sync(
-    create_stock_tables,
-    run_stock_etl
-)
+from src.db.stock_database import create_stock_table
 
 
 app = dash.Dash(
@@ -109,6 +103,5 @@ def update_date_range(ticker):
 
 if __name__ == "__main__":
     app.run(
-        debug=True,
-        use_reloader=False
+        debug=True
     )

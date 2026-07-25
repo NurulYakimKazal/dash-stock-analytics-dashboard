@@ -343,10 +343,23 @@ DB_NAME=postgres
 
 ## 3. Run Backfill (First-Time Setup)
 
+Run the initial data loading process in terminal:
+
 ```bash
 python -m scripts.run_financial_backfill
 
 python -m scripts.run_stock_backfill
+```
+
+
+## 4. Start the ETL Scheduler
+
+The scheduler runs the incremental ETL process periodically and updates the database.
+
+Open a terminal and run:
+
+```bash
+python scheduler.py
 ```
 
 ## 4. Start the Dash Application
