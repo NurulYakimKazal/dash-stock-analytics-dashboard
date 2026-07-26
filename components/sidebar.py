@@ -43,7 +43,7 @@ def render_sidebar():
                     placeholder="Select a ticker",
                     data=[{"label": ticker, "value": ticker} for ticker in TICKERS],
                     value="AAPL",
-                    searchable=True,
+                    searchable=False,
                     clearable=False,
                     nothingFoundMessage="No matching ticker",
                     maxDropdownHeight=200,
