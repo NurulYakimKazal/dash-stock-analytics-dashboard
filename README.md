@@ -2,7 +2,7 @@
 
 An interactive stock analytics system built with Dash for historical price analysis, performance evaluation, risk measurement, statistical exploration, and automated financial reporting.
 
-The system transforms daily market data into structured insights through an end-to-end pipeline including data ingestion, database storage, financial calculations, interactive visualization, and PDF report generation.
+The system transforms daily market data into structured insights through an end-to-end pipeline including data ingestion, database storage, financial calculations, interactive visualization, automated ETL execution, and PDF report generation.
 
 ---
 
@@ -19,6 +19,7 @@ This platform is an end-to-end stock analytics application that integrates:
 * Volume activity analysis
 * Interactive Dash visualization
 * Automated PDF reporting
+* Scheduled incremental ETL processing
 
 It supports both investment research and exploratory financial analysis.
 
@@ -165,7 +166,6 @@ Dash Application Layer
 * ReportLab
 * Kaleido
 * python-dotenv
-* APScheduler
 
 ---
 
@@ -175,7 +175,7 @@ Dash Application Layer
 * Cleans and validates financial records
 * Stores structured OHLCV data
 * Prevents duplicate records using database constraints
-* Uses scheduled incremental synchronization via a cron-based ETL job 
+* Uses GitHub Actions scheduled workflows for incremental ETL execution 
 * Maintains database consistency through primary keys
 
 ---
@@ -234,19 +234,24 @@ Moving averages are calculated using rolling windows:
 
 ```text
 DashStockDashboard/
-├── assets/                    # dashboard styles and screenshots
-├── components/                # reusable Dash UI components
-├── modules/                   # Dash analytics & visualization modules
-├── pages/                     # Dash pages
-├── scripts/                   # batch jobs (backfill)
-├── src/                       # ETL + database layer
+├── assets/                             # dashboard styles and screenshots
+├── components/                         # reusable Dash UI components
+├── modules/                            # Dash analytics & visualization modules
+├── pages/                              # Dash pages
+├── scripts/                   
+│   ├── scheduler.py                    # incremental ETL execution script
+│   ├── run_financial_backfill.py       # batch jobs (backfill)
+│   └── run_stock_backfill.py           # batch jobs (backfill)
+├── src/                                # ETL + database layer
 │   ├── db/
 │   └── etl/
 ├── utils/   
-├── app.py                     # main Dash application
-├── scheduler.py               # scheduled ETL jobs
+├── app.py                              # main Dash application
 ├── requirements.txt
 ├── .env.example
+├── .github/
+│   └── workflows/
+│       └── stock_sync.yml              # GitHub Actions scheduled ETL workflow
 └── README.md
 ```
 
@@ -356,13 +361,13 @@ python -m scripts.run_stock_backfill
 
 ## 4. Start the ETL Scheduler
 
-The scheduler runs the incremental ETL process periodically and updates the database.
-
-Open a terminal and run:
+The incremental ETL process can be executed manually::
 
 ```bash
-python scheduler.py
+python scripts/scheduler.py
 ```
+
+For production usage, this process is automatically triggered through GitHub Actions scheduled workflows.
 
 ## 5. Start the Dash Application
 
