@@ -3,6 +3,9 @@ name: Stock Sync
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: "0 23 * * 1-5"
+
 jobs:
   sync:
     runs-on: ubuntu-latest
