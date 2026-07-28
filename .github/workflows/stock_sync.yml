@@ -3,15 +3,12 @@ name: Stock Sync
 on:
   workflow_dispatch:
 
-  schedule:
-    - cron: "0 23 * * 1-5"
-
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -24,5 +21,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run stock sync
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
         run: |
           python scripts/scheduler.py
