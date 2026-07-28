@@ -31,7 +31,7 @@ def render_header():
                     "Stock Analytics Dashboard",
                     order=1,
                     fz={
-                        "base": "h3",  # mobile
+                        "base": "h4",  # mobile
                         "sm": "h3",  # tablet
                         "md": "h2",  # desktop
                     },
