@@ -57,10 +57,15 @@ layout = dcc.Loading(
                     dmc.Title(
                         "Market Snapshot",
                         order=4,
+                        fz={
+                            "base": "h5",  # mobile
+                            "sm": "h4",  # tablet
+                            "md": "h4",  # desktop
+                        }
                     ),
                     dmc.SimpleGrid(
                         id="market-snapshot",
-                        cols=4,
+                        cols={"base": 2, "md": 4},
                         spacing=5,
                     ),
                 ]
@@ -75,10 +80,15 @@ layout = dcc.Loading(
                     dmc.Title(
                         "Performance Summary",
                         order=4,
+                        fz={
+                            "base": "h5",  # mobile
+                            "sm": "h4",  # tablet
+                            "md": "h4",  # desktop
+                        }
                     ),
                     dmc.SimpleGrid(
                         id="performance-summary-kpis",
-                        cols=3,
+                        cols={"base": 2, "md": 3},
                         spacing=5,
                     ),
                 ],
@@ -89,9 +99,11 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Stack(
+            dmc.Paper(
                 id="cumulative-return-pg3",
-                gap="sm"
+                withBorder=True,
+                radius="md",
+                p="sm"
             ),
 
             dmc.Space(h="lg"),
@@ -103,10 +115,15 @@ layout = dcc.Loading(
                     dmc.Title(
                         "Risk Summary",
                         order=4,
+                        fz={
+                            "base": "h5",  # mobile
+                            "sm": "h4",  # tablet
+                            "md": "h4",  # desktop
+                        }
                     ),
                     dmc.SimpleGrid(
                         id="risk-summary-kpis",
-                        cols=3,
+                        cols={"base": 2, "md": 3},
                         spacing=5,
                     ),
                 ],
@@ -117,9 +134,11 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Stack(
+            dmc.Paper(
                 id="trend-overview",
-                gap="sm"
+                withBorder=True,
+                radius="md",
+                p="sm"
             ),
 
             dmc.Space(h="lg"),

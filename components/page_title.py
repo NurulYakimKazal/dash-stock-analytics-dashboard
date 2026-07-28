@@ -7,14 +7,20 @@ def render_page_title(title, icon):
         [
             dmc.ThemeIcon(
                 DashIconify(icon=icon),
+                size="md",
+                radius="sm",
                 color="blue",
-                variant="light",
-                radius="xl",
+                variant="filled",
             ),
 
             dmc.Title(
                 title,
                 order=2,
+                fz={
+                    "base": "h4",  # mobile
+                    "sm": "h3",  # tablet
+                    "md": "h2",  # desktop
+                }
             ),
         ],
         gap="sm",

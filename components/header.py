@@ -17,15 +17,24 @@ def render_header():
                 ),
 
                 dmc.ThemeIcon(
-                    DashIconify(icon="mdi:finance"),
+                    DashIconify(
+                        icon="mdi:finance",
+                        width=24,
+                    ),
                     size="lg",
-                    radius="xl",
+                    radius="sm",
                     color="blue",
+                    variant="filled",
                 ),
 
                 dmc.Title(
                     "Stock Analytics Dashboard",
-                    order=2,
+                    order=1,
+                    fz={
+                        "base": "h3",  # mobile
+                        "sm": "h3",  # tablet
+                        "md": "h2",  # desktop
+                    },
                 ),
             ],
 

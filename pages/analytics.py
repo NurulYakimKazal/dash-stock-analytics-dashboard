@@ -58,10 +58,15 @@ layout = dcc.Loading(
                     dmc.Title(
                         "Performance Overview",
                         order=4,
+                        fz={
+                            "base": "h5",  # mobile
+                            "sm": "h4",  # tablet
+                            "md": "h4",  # desktop
+                        }
                     ),
                     dmc.SimpleGrid(
                         id="performance-overview-kpis",
-                        cols=3,
+                        cols={"base": 2, "md": 3},
                         spacing=5,
                     ),
                 ],
@@ -72,19 +77,20 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Stack(
+            dmc.Paper(
                 id="cumulative-return-pg2",
-                gap="sm"
+                withBorder=True,
+                radius="md",
+                p="sm"
             ),
+
+            dmc.Space(h="xl"),
 
             dmc.Stack(
                 [
-                    dmc.Title(
-                        "Return Analysis",
-                        order=4,
-                    ),
                     dmc.Grid(
                         id="return-analysis",
+                        gutter=10
                     ),
                 ],
                 gap="sm",
@@ -99,10 +105,15 @@ layout = dcc.Loading(
                     dmc.Title(
                         "Risk Analysis",
                         order=4,
+                        fz={
+                            "base": "h5",  # mobile
+                            "sm": "h4",  # tablet
+                            "md": "h4",  # desktop
+                        }
                     ),
                     dmc.SimpleGrid(
                         id="risk-analysis-kpis",
-                        cols=3,
+                        cols={"base": 2, "md": 3},
                         spacing=5,
                     ),
                 ],
@@ -113,18 +124,20 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Stack(
+            dmc.Paper(
                 id="trend-indicators",
-                gap="sm"
+                withBorder=True,
+                radius="md",
+                p="sm"
             ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+            dmc.Space(h="xl"),
 
-            dmc.Stack(
+            dmc.Paper(
                 id="volume-activity",
-                gap="sm"
+                withBorder=True,
+                radius="md",
+                p="sm"
             ),
 
             dmc.Space(h="lg"),

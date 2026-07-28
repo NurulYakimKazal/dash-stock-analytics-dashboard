@@ -50,7 +50,6 @@ def render_historical_price(stock_df):
             close=stock_df["close"],
             name="Price",
             hovertemplate=(
-                "Date: %{x}<br>"
                 "Open: $%{open:.2f}<br>"
                 "High: $%{high:.2f}<br>"
                 "Low: $%{low:.2f}<br>"
@@ -73,7 +72,6 @@ def render_historical_price(stock_df):
                 color="#636EFA"
             ),
             hovertemplate=(
-                "Date: %{x}<br>"
                 "Volume: %{y:,.0f}"
                 "<extra></extra>"
             ),
@@ -84,9 +82,20 @@ def render_historical_price(stock_df):
 
 
     fig.update_layout(
-        height=700,
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
         xaxis_rangeslider_visible=False,
+        hovermode="x unified",
+        hoverlabel=dict(
+            bgcolor="white",
+            bordercolor="#374151",
+            font=dict(
+                color="#374151",
+                size=13,
+            ),
+        ),
         showlegend=False,
+        height=700,
         margin=dict(
             l=20,
             r=20,
@@ -95,21 +104,44 @@ def render_historical_price(stock_df):
         ),
     )
 
+    fig.update_xaxes(
+        showgrid=False,
+        row=1,
+        col=1,
+    )
+
+    fig.update_xaxes(
+        title=dict(
+            text="Date",
+            standoff=20,
+        ),
+        showgrid=False,
+        row=2,
+        col=1,
+    )
 
     fig.update_yaxes(
-        title_text="Price",
+        title=dict(
+            text="Price",
+            standoff=15,
+        ),
+        showgrid=True,
+        gridcolor="rgba(0,0,0,0.07)",
+        gridwidth=1,
+        zeroline=False,
         row=1,
         col=1,
     )
 
     fig.update_yaxes(
-        title_text="Volume",
-        row=2,
-        col=1,
-    )
-
-    fig.update_xaxes(
-        title_text="Date",
+        title=dict(
+            text="Volume",
+            standoff=15,
+        ),
+        showgrid=True,
+        gridcolor="rgba(0,0,0,0.07)",
+        gridwidth=1,
+        zeroline=False,
         row=2,
         col=1,
     )

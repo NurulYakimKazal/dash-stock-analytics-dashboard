@@ -43,7 +43,7 @@ layout = dcc.Loading(
             # KPIs
             dmc.SimpleGrid(
                 id="company-kpis",
-                cols=4,
+                cols={"base": 2, "md": 4},
                 spacing=5,
             ),
 
@@ -51,9 +51,11 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Stack(
+            dmc.Paper(
                 id="historical-price",
-                gap="sm"
+                withBorder=True,
+                radius="md",
+                p="sm"
             ),
 
             dmc.Space(h="lg"),

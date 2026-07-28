@@ -17,8 +17,12 @@ def render_footer():
                     " Python library. Data availability and accuracy are subject "
                     "to Yahoo Finance services.",
                 ],
-                size="xs",
                 c="dimmed",
+                fz={
+                    "base": "xs",
+                    "sm": "sm",
+                    "md": "sm",
+                },
             ),
         ],
         gap="sm",

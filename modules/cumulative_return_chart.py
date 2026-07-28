@@ -64,9 +64,19 @@ def render_cumulative_return(stock_df):
     )
 
     fig.update_layout(
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
         xaxis_title="Date",
         yaxis_title="Return (%)",
         hovermode="x unified",
+        hoverlabel=dict(
+            bgcolor="white",
+            bordercolor="#374151",
+            font=dict(
+                color="#374151",
+                size=13,
+            ),
+        ),
         height=400,
         margin=dict(
             t=20,
@@ -74,6 +84,23 @@ def render_cumulative_return(stock_df):
             r=20,
             b=20,
         )
+    )
+
+    fig.update_xaxes(
+        title=dict(
+            standoff=20,
+        ),
+        showgrid=False
+    )
+
+    fig.update_yaxes(
+        title=dict(
+            standoff=15,
+        ),
+        showgrid=True,
+        gridcolor="rgba(0,0,0,0.07)",
+        gridwidth=1,
+        zeroline=False,
     )
 
     return fig
