@@ -1,17 +1,15 @@
 import dash
 from dash import Input, Output, State, dcc, callback
-from dash.exceptions import PreventUpdate
 import dash_mantine_components as dmc
 import pandas as pd
 
-from src.db.company_database import fetch_company_data
-from src.db.stock_database import fetch_stock_data
 from components.page_title import render_page_title
 from components.company_details import render_company_details
 from components.kpis import render_kpis
 from components.one_plot_container import render_one_plot_container
 from components.descriptive_statistics_grid import render_descriptive_statistics_grid
 from components.footer import render_footer
+from modules.callback_data_processing import prepare_callback_data
 from modules.company_data import (
     prepare_company_data,
     prepare_company_kpi_cards,
@@ -193,30 +191,9 @@ layout = dcc.Loading(
     Input("date-range-picker", "value"),
 )
 
-def update_analytics(ticker, date_range):
+def update_report(ticker, date_range):
 
-    if ticker is None:
-        raise PreventUpdate
-
-    if (
-        date_range is None
-        or len(date_range) != 2
-        or date_range[0] is None
-        or date_range[1] is None
-    ):
-        raise PreventUpdate
-
-    company_dataframe = fetch_company_data(ticker).copy()
-    stock_dataframe = fetch_stock_data(ticker).copy()
-
-    stock_dataframe["date"] = pd.to_datetime(stock_dataframe["date"])
-
-    stock_dataframe = stock_dataframe[
-        stock_dataframe["date"].between(
-            pd.Timestamp(date_range[0]),
-            pd.Timestamp(date_range[1]),
-        )
-    ]
+    company_dataframe, stock_dataframe = prepare_callback_data(ticker, date_range)
 
     company_data = prepare_company_data(company_dataframe)
     company_kpis = prepare_company_kpi_cards(company_data)
@@ -253,17 +230,7 @@ def update_analytics(ticker, date_range):
 )
 def download_pdf(_n_clicks, ticker, date_range):
 
-    company_dataframe = fetch_company_data(ticker).copy()
-    stock_dataframe = fetch_stock_data(ticker).copy()
-
-    stock_dataframe["date"] = pd.to_datetime(stock_dataframe["date"])
-
-    stock_dataframe = stock_dataframe[
-        stock_dataframe["date"].between(
-            pd.Timestamp(date_range[0]),
-            pd.Timestamp(date_range[1]),
-        )
-    ]
+    company_dataframe, stock_dataframe = prepare_callback_data(ticker, date_range)
 
     company_data = prepare_company_data(company_dataframe)
     performance_data = prepare_performance_overview_data(stock_dataframe)
