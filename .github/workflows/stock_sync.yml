@@ -1,4 +1,4 @@
-name: Stock Sync
+name: Company and Stock Sync
 
 on:
   workflow_dispatch:
