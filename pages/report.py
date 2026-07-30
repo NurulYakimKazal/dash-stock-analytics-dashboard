@@ -97,12 +97,7 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Paper(
-                id="cumulative-return-pg3",
-                withBorder=True,
-                radius="md",
-                p="sm"
-            ),
+            render_one_plot_container("Cumulative Return", "cumulative-return-pg3"),
 
             dmc.Space(h="lg"),
             dmc.Divider(),
@@ -132,12 +127,7 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Paper(
-                id="trend-overview",
-                withBorder=True,
-                radius="md",
-                p="sm"
-            ),
+            render_one_plot_container("Trend Overview", "trend-overview"),
 
             dmc.Space(h="lg"),
             dmc.Divider(),
@@ -183,9 +173,9 @@ layout = dcc.Loading(
     Output("company-details-container-pg3", "children"),
     Output("market-snapshot", "children"),
     Output("performance-summary-kpis", "children"),
-    Output("cumulative-return-pg3", "children"),
+    Output("cumulative-return-pg3", "figure"),
     Output("risk-summary-kpis", "children"),
-    Output("trend-overview", "children"),
+    Output("trend-overview", "figure"),
     Output("descriptive-statistics-pg3", "children"),
     Input("ticker-dropdown", "value"),
     Input("date-range-picker", "value"),
@@ -206,7 +196,7 @@ def update_report(ticker, date_range):
     risk_analysis_data = prepare_risk_analysis_data(stock_dataframe)
     risk_analysis_kpis = prepare_risk_analysis_kpi_cards(risk_analysis_data)
 
-    trend_indicators_chart = render_trend_indicators(stock_dataframe)
+    trend_overview_chart = render_trend_indicators(stock_dataframe)
 
     descriptive_statistics_data = prepare_descriptive_statistics_data(stock_dataframe)
 
@@ -214,9 +204,9 @@ def update_report(ticker, date_range):
         render_company_details(company_data["company"]),
         render_kpis(company_kpis),
         render_kpis(performance_overview_kpis),
-        render_one_plot_container("Cumulative Return", cumulative_return_chart),
+        cumulative_return_chart,
         render_kpis(risk_analysis_kpis),
-        render_one_plot_container("Trend Overview", trend_indicators_chart),
+        trend_overview_chart,
         render_descriptive_statistics_grid(descriptive_statistics_data)
     )
 

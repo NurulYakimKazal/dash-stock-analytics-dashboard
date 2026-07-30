@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+import numpy as np
 
 from utils.empty_graph import empty_chart
 
@@ -100,7 +101,7 @@ def render_daily_returns(stock_df):
             standoff=15,
         ),
         showgrid=True,
-        gridcolor="rgba(0,0,0,0.07)",
+        gridcolor="rgba(0,0,0,0.08)",
         gridwidth=1,
         zeroline=False,
     )
@@ -144,21 +145,48 @@ def render_return_histogram(stock_df):
             "to calculate daily returns."
         )
 
+    edges = np.arange(-10, 11, 1)
+
+    counts, edges = np.histogram(
+        df["daily_return"],
+        bins=edges
+    )
+
+    centers = (
+        edges[:-1] + edges[1:]
+    ) / 2
+
+    widths = np.diff(edges)
+
+    bin_labels = [
+        f"{left:.2f}% to {right:.2f}%"
+        for left, right in zip(
+            edges[:-1],
+            edges[1:]
+        )
+    ]
+
     fig = go.Figure()
 
     fig.add_trace(
-        go.Histogram(
-            x=df["daily_return"],
-            nbinsx=40,
-            name="Daily Return",
+        go.Bar(
+            x=centers,
+            y=counts,
+            width=widths,
             marker=dict(
-                color="#636EFA"
+                color="#636EFA",
+                line=dict(
+                    color="white",
+                    width=1,
+                ),
             ),
+            customdata=bin_labels,
             hovertemplate=(
-                "Return: %{x:.2f}%<br>"
+                "Return Range: %{customdata}<br>"
                 "Frequency: %{y}"
                 "<extra></extra>"
             ),
+            showlegend=False,
         )
     )
 
@@ -205,7 +233,7 @@ def render_return_histogram(stock_df):
             standoff=15,
         ),
         showgrid=True,
-        gridcolor="rgba(0,0,0,0.07)",
+        gridcolor="rgba(0,0,0,0.08)",
         gridwidth=1,
         zeroline=False,
     )

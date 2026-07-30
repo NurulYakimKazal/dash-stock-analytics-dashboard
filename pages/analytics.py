@@ -74,12 +74,7 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Paper(
-                id="cumulative-return-pg2",
-                withBorder=True,
-                radius="md",
-                p="sm"
-            ),
+            render_one_plot_container("Cumulative Return", "cumulative-return-pg2"),
 
             dmc.Space(h="xl"),
 
@@ -121,21 +116,11 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Paper(
-                id="trend-indicators",
-                withBorder=True,
-                radius="md",
-                p="sm"
-            ),
+            render_one_plot_container("Trend Indicators", "trend-indicators"),
 
             dmc.Space(h="xl"),
 
-            dmc.Paper(
-                id="volume-activity",
-                withBorder=True,
-                radius="md",
-                p="sm"
-            ),
+            render_one_plot_container("Volume Activity", "volume-activity"),
 
             dmc.Space(h="lg"),
             dmc.Divider(),
@@ -160,11 +145,11 @@ layout = dcc.Loading(
 @callback(
     Output("company-details-container-pg2", "children"),
     Output("performance-overview-kpis", "children"),
-    Output("cumulative-return-pg2", "children"),
+    Output("cumulative-return-pg2", "figure"),
     Output("return-analysis", "children"),
     Output("risk-analysis-kpis", "children"),
-    Output("trend-indicators", "children"),
-    Output("volume-activity", "children"),
+    Output("trend-indicators", "figure"),
+    Output("volume-activity", "figure"),
     Output("descriptive-statistics-pg2", "children"),
     Input("ticker-dropdown", "value"),
     Input("date-range-picker", "value"),
@@ -195,10 +180,10 @@ def update_analytics(ticker, date_range):
     return (
         render_company_details(company_data["company"]),
         render_kpis(performance_overview_kpis),
-        render_one_plot_container("Cumulative Return", cumulative_return_chart),
+        cumulative_return_chart,
         render_two_plot_container(daily_return_chart, return_histogram_chart),
         render_kpis(risk_analysis_kpis),
-        render_one_plot_container("Trend Indicators", trend_indicators_chart),
-        render_one_plot_container("Volume Activity", volume_activity_chart),
+        trend_indicators_chart,
+        volume_activity_chart,
         render_descriptive_statistics_grid(descriptive_statistics_data)
     )

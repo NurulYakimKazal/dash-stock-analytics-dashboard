@@ -48,12 +48,7 @@ layout = dcc.Loading(
             dmc.Divider(),
             dmc.Space(h="lg"),
 
-            dmc.Paper(
-                id="historical-price",
-                withBorder=True,
-                radius="md",
-                p="sm"
-            ),
+            render_one_plot_container("Historical Prices", "historical-price"),
 
             dmc.Space(h="lg"),
             dmc.Divider(),
@@ -77,7 +72,7 @@ layout = dcc.Loading(
 @callback(
     Output("company-details-container-pg1", "children"),
     Output("company-kpis", "children"),
-    Output("historical-price", "children"),
+    Output("historical-price", "figure"),
     Output("historical-price-grid", "children"),
     Input("ticker-dropdown", "value"),
     Input("date-range-picker", "value"),
@@ -95,6 +90,6 @@ def update_stock_explorer(ticker, date_range):
     return (
         render_company_details(company_data["company"]),
         render_kpis(company_kpis),
-        render_one_plot_container("Historical Price", historical_price_chart),
+        historical_price_chart,
         render_historical_price_grid(stock_dataframe)
     )

@@ -116,7 +116,7 @@ def render_volume_activity(stock_df):
             standoff=15,
         ),
         showgrid=True,
-        gridcolor="rgba(0,0,0,0.07)",
+        gridcolor="rgba(0,0,0,0.08)",
         gridwidth=1,
         zeroline=False,
     )
