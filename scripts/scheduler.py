@@ -23,8 +23,6 @@ def sync():
         run_stock_etl
     )
 
-    print("Company and stock data sync complete")
-
 
 if __name__ == "__main__":
     sync()

@@ -2,7 +2,7 @@
 
 An interactive stock analytics system built with Dash for historical price analysis, performance evaluation, risk measurement, statistical exploration, and automated financial reporting.
 
-The system transforms daily market data into structured insights through an end-to-end pipeline including data ingestion, database storage, financial calculations, interactive visualization, automated ETL execution, and PDF report generation.
+The system transforms daily market data into structured financial insights through data ingestion, PostgreSQL storage, quantitative analysis, interactive visualization, and automated reporting.
 
 ---
 
@@ -11,15 +11,13 @@ The system transforms daily market data into structured insights through an end-
 This platform is an end-to-end stock analytics application that integrates:
 
 * Historical market data management
-* Financial KPI calculation
-* Price trend analysis
-* Statistical return analysis
-* Risk and volatility analysis
-* Trending indicators analysis
-* Volume activity analysis
+* Financial metric calculation
+* Price trend and technical indicator analysis
+* Return, risk, and volatility analysis
+* Trading volume analysis
 * Interactive Dash visualization
 * Automated PDF reporting
-* Scheduled incremental ETL processing
+* Incremental ETL processing
 
 It supports both investment research and exploratory financial analysis.
 
@@ -28,32 +26,6 @@ It supports both investment research and exploratory financial analysis.
 ## 🏗️ System Architecture
 
 This system follows a layered analytical approach:
-
-```text
-Market Data
-   │
-   ▼
-Structured Database
-   │
-   ▼
-Financial Metrics
-   │
-   ▼
-Interactive Dash Dashboard
-   │
-   ▼
-Automated Reporting
-```
-
-It separates different analytical perspectives:
-
-* What happened (historical prices & performance)
-* How it behaved (risk & volatility)
-* What patterns exist (statistics & trends)
-
----
-
-## 🔄 Data Pipeline Architecture
 
 ```text
 Financial Market Data
@@ -65,13 +37,17 @@ ETL Pipeline
 PostgreSQL Database (Supabase)
         │
         ├── Stock Price Table
-        ├── Ticker Metadata
+        │       └── OHLCV data
+        │
+        └── Company Info Table
+                ├── Company profile
+                └── Valuation metrics
         │
         ▼
 Selected Stock Dataset
         │
         ├── KPI Engine
-        │       ├── Ticker Metadata
+        │       ├── Company Valuation Metrics
         │       ├── Performance Metrics
         │       ├── Risk Metrics
         │       └── Statistical Analysis
@@ -85,12 +61,6 @@ Selected Stock Dataset
         │
         ▼
 Dash Application Layer
-        │
-        ├── Interactive Dashboard
-        ├── Charts
-        ├── Data Tables (AG Grid)
-        ├── User Controls
-        └── PDF Export
 ```
 
 ---
@@ -156,7 +126,6 @@ Dash Application Layer
 * Python
 * Dash
 * Plotly
-* Plotly Express
 * Pandas
 * NumPy
 * PostgreSQL
@@ -166,17 +135,17 @@ Dash Application Layer
 * ReportLab
 * Kaleido
 * python-dotenv
+* GitHub Actions
 
 ---
 
 # 🧹 Data Engineering Pipeline
 
-* Retrieves historical stock market data
-* Cleans and validates financial records
-* Stores structured OHLCV data
-* Prevents duplicate records using database constraints
-* Uses GitHub Actions scheduled workflows for incremental ETL execution 
-* Maintains database consistency through primary keys
+* Retrieves historical stock market data.
+* Cleans and validates financial records.
+* Stores structured OHLCV data in PostgreSQL.
+* Prevents duplicate records using database constraints.
+* Uses GitHub Actions scheduled workflows for incremental ETL execution.
 
 ---
 
@@ -184,7 +153,9 @@ Dash Application Layer
 
 The application uses PostgreSQL hosted on Supabase.
 
-Main table:
+Tables:
+
+### Stock Price Table
 
 ```text
 stock_prices
@@ -205,6 +176,27 @@ Primary key:
 ```
 
 This prevents duplicate daily records for the same stock.
+
+### Company Information Table
+```text
+company_info
+
+ticker
+name
+sector
+industry
+market_cap
+trailing_pe
+dividend_yield
+beta
+updated_at
+```
+
+Primary key:
+```text
+ticker
+```
+This stores company profile information and financial attributes used in KPI summaries and stock analysis.
 
 ---
 
@@ -254,35 +246,6 @@ DashStockDashboard/
 │       └── stock_sync.yml              # GitHub Actions scheduled ETL workflow
 └── README.md
 ```
-
----
-
-# 📊 Design Philosophy
-
-This system follows a layered analytical approach:
-
-```text
-Raw Market Data
-      │
-      ▼
-Structured Financial Data
-      │
-      ▼
-Calculated Metrics
-      │
-      ▼
-Interactive Dash Insights
-      │
-      ▼
-Financial Report
-```
-
-It separates analytical perspectives:
-
-* What happened (historical price movement)
-* How it performed (returns & KPIs)
-* How risky it was (volatility & drawdown)
-* What patterns exist (statistics & trends)
 
 ---
 
@@ -433,4 +396,4 @@ Focus areas:
 
 # 🚀 Final Note
 
-This project demonstrates an end-to-end financial analytics system that integrates database engineering, quantitative analysis, interactive Dash visualization, and automated reporting into a unified platform for exploring stock market behavior.
+This project demonstrates an end-to-end stock analytics platform that integrates database engineering, financial analysis, interactive Dash visualization, and automated reporting into a unified system for exploring historical market data.

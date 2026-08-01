@@ -6,7 +6,7 @@ from components.page_title import render_page_title
 from components.company_details import render_company_details
 from components.kpis import render_kpis
 from components.one_plot_container import render_one_plot_container
-from components.two_plot_container import render_two_plot_container
+from components.chart_grid_container import render_chart_grid
 from components.descriptive_statistics_grid import render_descriptive_statistics_grid
 from components.footer import render_footer
 from modules.callback_data_processing import prepare_callback_data
@@ -78,14 +78,11 @@ layout = dcc.Loading(
 
             dmc.Space(h="xl"),
 
-            dmc.Stack(
-                [
-                    dmc.Grid(
-                        id="return-analysis",
-                        gutter=10
-                    ),
-                ],
-                gap="sm",
+            render_chart_grid(
+                charts=[
+                    ("Daily Return Over Time", "daily-return"),
+                    ("Return Distribution", "return-distribution")
+                ]
             ),
 
             dmc.Space(h="lg"),
@@ -146,7 +143,8 @@ layout = dcc.Loading(
     Output("company-details-container-pg2", "children"),
     Output("performance-overview-kpis", "children"),
     Output("cumulative-return-pg2", "figure"),
-    Output("return-analysis", "children"),
+    Output("daily-return", "figure"),
+    Output("return-distribution", "figure"),
     Output("risk-analysis-kpis", "children"),
     Output("trend-indicators", "figure"),
     Output("volume-activity", "figure"),
@@ -181,7 +179,8 @@ def update_analytics(ticker, date_range):
         render_company_details(company_data["company"]),
         render_kpis(performance_overview_kpis),
         cumulative_return_chart,
-        render_two_plot_container(daily_return_chart, return_histogram_chart),
+        daily_return_chart,
+        return_histogram_chart,
         render_kpis(risk_analysis_kpis),
         trend_indicators_chart,
         volume_activity_chart,
