@@ -1,8 +1,15 @@
-# 📈 Stock Analytics & Financial Intelligence Platform
+# 📈 Stock Monitoring & Analytics Platform
 
 An interactive stock analytics system built with Dash for historical price analysis, performance evaluation, risk measurement, statistical exploration, and automated financial reporting.
 
 The system transforms daily market data into structured financial insights through data ingestion, PostgreSQL storage, quantitative analysis, interactive visualization, and automated reporting.
+
+---
+
+## 🚀 Live Application
+
+The dashboard is deployed and accessible online:
+👉 **[Launch Dash Stock Monitoring & Analytics Dashboard](https://d7e0b9f0-d3b8-48b0-ae68-854d03aa1f57.plotly.app/)**
 
 ---
 
