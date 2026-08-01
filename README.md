@@ -308,7 +308,7 @@ DB_USER=
 DB_PASSWORD=
 DB_HOST=
 DB_PORT=6543
-DB_NAME=postgres
+DB_NAME=
 ```
 
 ## 3. Run Backfill (First-Time Setup)
