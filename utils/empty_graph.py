@@ -12,11 +12,11 @@ def empty_chart(message):
         xref="paper",
         yref="paper",
         showarrow=False,
-        font=dict(size=16),
+        font=dict(size=12),
     )
 
     fig.update_layout(
-        height=150,
+        height=400,
         xaxis_visible=False,
         yaxis_visible=False,
         margin=dict(

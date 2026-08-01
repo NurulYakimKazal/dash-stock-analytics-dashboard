@@ -22,50 +22,50 @@ dash.register_page(
 )
 
 
-layout = dcc.Loading(
-    children=dmc.Container(
-        [
-            render_page_title("Stock Explorer", "mdi:chart-line"),
+layout = dmc.Container(
+    [
+        render_page_title("Stock Explorer", "mdi:chart-line"),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            # Company Details
-            dmc.Stack(
-                id="company-details-container-pg1",
-                gap=2
-            ),
+        # Company Details
+        dmc.Stack(
+            id="company-details-container-pg1",
+            gap=2
+        ),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            # KPIs
-            dmc.SimpleGrid(
-                id="company-kpis",
-                cols={"base": 2, "md": 4},
-                spacing=5,
-            ),
+        # KPIs
+        dmc.SimpleGrid(
+            id="company-kpis",
+            cols={"base": 2, "md": 4},
+            spacing=5,
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
+        dcc.Loading(
             render_one_plot_container("Historical Prices", "historical-price"),
+            type="default",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
 
-            dmc.Accordion(
-                children=[
-                    dmc.AccordionItem(
-                        id="historical-price-grid",
-                        value="dataframe",
-                    )
-                ]
-            ),
+        dmc.Accordion(
+            children=[
+                dmc.AccordionItem(
+                    id="historical-price-grid",
+                    value="dataframe",
+                )
+            ]
+        ),
 
-            render_footer()
-        ]
-    ),
-    type="default",
+        render_footer()
+    ]
 )
 
 

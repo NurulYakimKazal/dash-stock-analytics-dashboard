@@ -34,138 +34,141 @@ dash.register_page(
 )
 
 
-layout = dcc.Loading(
-    children=dmc.Container(
-        [
-            render_page_title("Report", "mdi:file-chart"),
+layout = dmc.Container(
+    [
+        render_page_title("Report", "mdi:file-chart"),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            # Company Details
-            dmc.Stack(
-                id="company-details-container-pg3",
-                gap=2
-            ),
+        # Company Details
+        dmc.Stack(
+            id="company-details-container-pg3",
+            gap=2
+        ),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            # KPIs
-            dmc.Stack(
-                children=[
-                    dmc.Title(
-                        "Market Snapshot",
-                        order=4,
-                        fz={
-                            "base": "h5",  # mobile
-                            "sm": "h4",  # tablet
-                            "md": "h4",  # desktop
-                        }
-                    ),
-                    dmc.SimpleGrid(
-                        id="market-snapshot",
-                        cols={"base": 2, "md": 4},
-                        spacing=5,
-                    ),
-                ]
-            ),
+        # KPIs
+        dmc.Stack(
+            children=[
+                dmc.Title(
+                    "Market Snapshot",
+                    order=4,
+                    fz={
+                        "base": "h5",  # mobile
+                        "sm": "h4",  # tablet
+                        "md": "h4",  # desktop
+                    }
+                ),
+                dmc.SimpleGrid(
+                    id="market-snapshot",
+                    cols={"base": 2, "md": 4},
+                    spacing=5,
+                ),
+            ]
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
-            dmc.Stack(
-                [
-                    dmc.Title(
-                        "Performance Summary",
-                        order=4,
-                        fz={
-                            "base": "h5",  # mobile
-                            "sm": "h4",  # tablet
-                            "md": "h4",  # desktop
-                        }
-                    ),
-                    dmc.SimpleGrid(
-                        id="performance-summary-kpis",
-                        cols={"base": 2, "md": 3},
-                        spacing=5,
-                    ),
-                ],
-                gap="sm",
-            ),
+        dmc.Stack(
+            [
+                dmc.Title(
+                    "Performance Summary",
+                    order=4,
+                    fz={
+                        "base": "h5",  # mobile
+                        "sm": "h4",  # tablet
+                        "md": "h4",  # desktop
+                    }
+                ),
+                dmc.SimpleGrid(
+                    id="performance-summary-kpis",
+                    cols={"base": 2, "md": 3},
+                    spacing=5,
+                ),
+            ],
+            gap="sm",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
+        dcc.Loading(
             render_one_plot_container("Cumulative Return", "cumulative-return-pg3"),
+            type="default",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
-            dmc.Stack(
-                [
-                    dmc.Title(
-                        "Risk Summary",
-                        order=4,
-                        fz={
-                            "base": "h5",  # mobile
-                            "sm": "h4",  # tablet
-                            "md": "h4",  # desktop
-                        }
-                    ),
-                    dmc.SimpleGrid(
-                        id="risk-summary-kpis",
-                        cols={"base": 2, "md": 3},
-                        spacing=5,
-                    ),
-                ],
-                gap="sm",
-            ),
+        dmc.Stack(
+            [
+                dmc.Title(
+                    "Risk Summary",
+                    order=4,
+                    fz={
+                        "base": "h5",  # mobile
+                        "sm": "h4",  # tablet
+                        "md": "h4",  # desktop
+                    }
+                ),
+                dmc.SimpleGrid(
+                    id="risk-summary-kpis",
+                    cols={"base": 2, "md": 3},
+                    spacing=5,
+                ),
+            ],
+            gap="sm",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
+        dcc.Loading(
             render_one_plot_container("Trend Overview", "trend-overview"),
+            type="default",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
 
-            dmc.Accordion(
-                children=[
-                    dmc.AccordionItem(
-                        id="descriptive-statistics-pg3",
-                        value="dataframe",
-                    )
-                ],
-                value="dataframe",
-            ),
+        dmc.Accordion(
+            children=[
+                dmc.AccordionItem(
+                    id="descriptive-statistics-pg3",
+                    value="dataframe",
+                )
+            ],
+            value="dataframe",
+        ),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            dmc.Group(
-                justify="left",
-                children=[
-                    dmc.Button(
-                        "Download PDF Report",
-                        id="download-pdf-btn",
-                        color="blue",
-                        variant="filled",
-                    ),
-                ],
-            ),
+        dmc.Group(
+            justify="left",
+            children=[
+                dmc.Button(
+                    "Download PDF Report",
+                    id="download-pdf-btn",
+                    color="blue",
+                    variant="filled",
+                ),
+            ],
+        ),
 
-            dcc.Download(id="download-pdf"),
+        dcc.Download(id="download-pdf"),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            dmc.Divider(),
+        dmc.Divider(),
 
-            render_footer(),
-        ]
-    ),
-    type="default",
+        render_footer(),
+    ]
 )
 
 

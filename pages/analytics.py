@@ -35,107 +35,116 @@ dash.register_page(
 )
 
 
-layout = dcc.Loading(
-    children=dmc.Container(
-        [
-            render_page_title("Analytics", "mdi:chart-box"),
+layout = dmc.Container(
+    [
+        render_page_title("Analytics", "mdi:chart-box"),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            # Company Details
-            dmc.Stack(
-                id="company-details-container-pg2",
-                gap=2
-            ),
+        # Company Details
+        dmc.Stack(
+            id="company-details-container-pg2",
+            gap=2
+        ),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
-            dmc.Stack(
-                [
-                    dmc.Title(
-                        "Performance Overview",
-                        order=4,
-                        fz={
-                            "base": "h5",  # mobile
-                            "sm": "h4",  # tablet
-                            "md": "h4",  # desktop
-                        }
-                    ),
-                    dmc.SimpleGrid(
-                        id="performance-overview-kpis",
-                        cols={"base": 2, "md": 3},
-                        spacing=5,
-                    ),
-                ],
-                gap="sm",
-            ),
+        dmc.Stack(
+            [
+                dmc.Title(
+                    "Performance Overview",
+                    order=4,
+                    fz={
+                        "base": "h5",  # mobile
+                        "sm": "h4",  # tablet
+                        "md": "h4",  # desktop
+                    }
+                ),
+                dmc.SimpleGrid(
+                    id="performance-overview-kpis",
+                    cols={"base": 2, "md": 3},
+                    spacing=5,
+                ),
+            ],
+            gap="sm",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
+        dcc.Loading(
             render_one_plot_container("Cumulative Return", "cumulative-return-pg2"),
+            type="default",
+        ),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
+        dcc.Loading(
             render_chart_grid(
                 charts=[
                     ("Daily Return Over Time", "daily-return"),
                     ("Return Distribution", "return-distribution")
                 ]
             ),
+            type="default",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
-            dmc.Stack(
-                [
-                    dmc.Title(
-                        "Risk Analysis",
-                        order=4,
-                        fz={
-                            "base": "h5",  # mobile
-                            "sm": "h4",  # tablet
-                            "md": "h4",  # desktop
-                        }
-                    ),
-                    dmc.SimpleGrid(
-                        id="risk-analysis-kpis",
-                        cols={"base": 2, "md": 3},
-                        spacing=5,
-                    ),
-                ],
-                gap="sm",
-            ),
+        dmc.Stack(
+            [
+                dmc.Title(
+                    "Risk Analysis",
+                    order=4,
+                    fz={
+                        "base": "h5",  # mobile
+                        "sm": "h4",  # tablet
+                        "md": "h4",  # desktop
+                    }
+                ),
+                dmc.SimpleGrid(
+                    id="risk-analysis-kpis",
+                    cols={"base": 2, "md": 3},
+                    spacing=5,
+                ),
+            ],
+            gap="sm",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
-            dmc.Space(h="lg"),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
+        dmc.Space(h="lg"),
 
+        dcc.Loading(
             render_one_plot_container("Trend Indicators", "trend-indicators"),
+            type="default",
+        ),
 
-            dmc.Space(h="xl"),
+        dmc.Space(h="xl"),
 
+        dcc.Loading(
             render_one_plot_container("Volume Activity", "volume-activity"),
+            type="default",
+        ),
 
-            dmc.Space(h="lg"),
-            dmc.Divider(),
+        dmc.Space(h="lg"),
+        dmc.Divider(),
 
-            dmc.Accordion(
-                children=[
-                    dmc.AccordionItem(
-                        id="descriptive-statistics-pg2",
-                        value="dataframe",
-                    )
-                ],
-                value="dataframe",
-            ),
+        dmc.Accordion(
+            children=[
+                dmc.AccordionItem(
+                    id="descriptive-statistics-pg2",
+                    value="dataframe",
+                )
+            ],
+            value="dataframe",
+        ),
 
-            render_footer()
-        ]
-    ),
-    type="default",
+        render_footer()
+    ]
 )
 
 
