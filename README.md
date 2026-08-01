@@ -266,6 +266,8 @@ Stock summary, company information, company KPIs, candlestick chart, and trading
 
 ![Stock Explorer 2](assets/stock_explorer_2.png)
 
+![Stock Explorer 3](assets/stock_explorer_3.png)
+
 ---
 
 ## 📊 Analytics 
@@ -357,6 +359,7 @@ http://127.0.0.1:8050/
 
 The application can be deployed using platforms that support Python web applications:
 
+* Plotly Cloud
 * Render
 * Railway
 * AWS Elastic Beanstalk
