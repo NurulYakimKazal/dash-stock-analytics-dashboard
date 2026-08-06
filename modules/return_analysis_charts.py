@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import numpy as np
 
-from utils.empty_graph import empty_chart
+from modules.empty_graph import empty_chart
 
 
 DAILY_RETURNS_REQUIRED_COLUMNS = ["date", "close"]
@@ -80,7 +80,7 @@ def render_daily_returns(stock_df):
             ),
         ),
         showlegend=False,
-        height=350,
+        height=400,
         margin=dict(
             t=20,
             l=20,
@@ -212,7 +212,7 @@ def render_return_histogram(stock_df):
             ),
         ),
         showlegend=False,
-        height=350,
+        height=400,
         margin=dict(
             t=20,
             l=20,

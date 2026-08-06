@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from utils.empty_graph import empty_chart
+from modules.empty_graph import empty_chart
 
 
 REQUIRED_COLUMNS = [
